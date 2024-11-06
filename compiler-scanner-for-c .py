@@ -5,7 +5,7 @@ from tkinter import scrolledtext
 TOKEN_SPECIFICATION = [
     ('COMMENT', r'//.*|/\*[\s\S]*?\*/'),
     ('NUMBER', r'\b\d+(\.\d*)?\b'),
-    ('KEYWORD', r'\b(int|float|char|double|if|else|while|for|return|void|include)\b'),
+    ('KEYWORD', r'\b(int|float|char|double|if|else|while|for|return|void|include|main)\b'),
     ('STRING', r'"([^"\\]*(\\.[^"\\]*)*)"' ),
     ('CHAR', r"'.'"),
     ('OPERATOR', r'[+\-*/%=&|!<>]=?|&&|\|\|'),
