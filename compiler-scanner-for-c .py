@@ -9,7 +9,7 @@ TOKEN_SPECIFICATION = [
     ('STRING', r'"([^"\\]*(\\.[^"\\]*)*)"' ),
     ('CHAR', r"'.'"),
     ('OPERATOR', r'[+\-*/%=&|!<>]=?|&&|\|\|'),
-    ('SEPARATOR', r'[;,{}()\[\]]'),
+    ('SpecialCharacter', r'[;,{}()\[\]]'),
     ('WHITESPACE', r'\s+'),
     ('NEWLINE', r'\n'),
     ('IDENTIFIER', r'\b[A-Za-z_]\w*\b'),
@@ -24,7 +24,7 @@ TOKEN_COLORS = {
     'STRING': 'orange',
     'CHAR': 'orange',
     'OPERATOR': 'red',
-    'SEPARATOR': 'green',
+    'SpecialCharacter': 'green',
     'COMMENT': 'gray',
     'WHITESPACE': 'white'
 }
