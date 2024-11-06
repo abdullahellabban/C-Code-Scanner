@@ -9,7 +9,7 @@ A Python-based tool for scanning and tokenizing C language code. This applicatio
 
 ## How to Use
 1. Clone the repository.
-2. Run the `scanner_app.py` file to open the GUI.
+2. Run the `compiler-scanner-for-c .py` file to open the GUI.
 3. Enter or paste C code into the text box and click "Scan Code" to view tokenized output.
 
 ## Author
