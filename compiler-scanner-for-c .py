@@ -4,9 +4,9 @@ from tkinter import scrolledtext
 
 TOKEN_SPECIFICATION = [
     ('COMMENT', r'//.*|/\*[\s\S]*?\*/'),
-    ('NUMBER', r'\b\d+(\.\d*)?\b'),
-    ('KEYWORD', r'\b(int|float|char|double|if|else|while|for|return|void|include|main)\b'),
-    ('STRING', r'"([^"\\]*(\\.[^"\\]*)*)"' ),
+    ('Numeric_Constant', r'\b\d+(\.\d+([eE][+-]?\d+)?)?\b'),
+    ('KEYWORD', r'\b(int|float|char|double|if|else|while|for|return|void|include|main|switch|case|break|continue|default|struct|typedef|long|short|unsigned|signed)\b'),
+    ('STRING', r'"([^"\\]*(\\.[^"\\]*)*)"'),  
     ('CHAR', r"'.'"),
     ('OPERATOR', r'[+\-*/%=&|!<>]=?|&&|\|\|'),
     ('SpecialCharacter', r'[;,{}()\[\]]'),
@@ -18,15 +18,16 @@ TOKEN_SPECIFICATION = [
 TOKEN_REGEX = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in TOKEN_SPECIFICATION)
 
 TOKEN_COLORS = {
-    'NUMBER': 'blue',
+    'Numeric_Constant': 'blue',
     'IDENTIFIER': 'black',
     'KEYWORD': 'purple',
-    'STRING': 'orange',
+    'STRING': 'orange', 
     'CHAR': 'orange',
     'OPERATOR': 'red',
     'SpecialCharacter': 'green',
     'COMMENT': 'gray',
-    'WHITESPACE': 'white'
+    'WHITESPACE': 'white',
+    'NEWLINE': 'white',
 }
 
 def tokenize(code):
@@ -37,7 +38,7 @@ def tokenize(code):
         token_type = match.lastgroup
         token_value = match.group(token_type)
         
-        if token_type == 'WHITESPACE':
+        if token_type == 'WHITESPACE' or token_type == 'NEWLINE':
             continue
         
         tokens.append((token_type, token_value, line_number))
@@ -78,7 +79,7 @@ class ScannerApp:
         
         if tokens:
             for token in tokens:
-                token_info = f"{token[0]:<10} | '{token[1]}'\n"
+                token_info = f"{token[0]:<15} | '{token[1]}'\n"
                 self.output.insert(tk.END, token_info, token[0])
         else:
             self.output.insert(tk.END, "No tokens found.")
